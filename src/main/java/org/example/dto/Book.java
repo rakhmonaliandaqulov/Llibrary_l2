@@ -8,15 +8,17 @@ public class Book {
     private String author;
     private LocalDate publishYear;
     private Integer amount;
+    private Boolean visible;
     public Book() {
     }
 
-    public Book(Integer id, String title, String author, LocalDate publishYear, Integer amount) {
+    public Book(Integer id, String title, String author, LocalDate publishYear, Integer amount, Boolean visible) {
         this.id = id;
         this.title = title;
         this.author = author;
         this.publishYear = publishYear;
         this.amount = amount;
+        this.visible = visible;
     }
     public Integer getId() {
         return id;
@@ -48,6 +50,12 @@ public class Book {
     public void setAmount(Integer amount) {
         this.amount = amount;
     }
+    public Boolean getVisible() {
+        return visible;
+    }
+    public void setVisible(Boolean visible) {
+        this.visible = visible;
+    }
 
     @Override
     public String toString() {
@@ -57,6 +65,7 @@ public class Book {
                 ", author='" + author + '\'' +
                 ", publishYear=" + publishYear +
                 ", amount=" + amount +
+                ", visible=" + visible +
                 '}';
     }
 }

@@ -1,12 +1,16 @@
 package org.example.controller;
 
+import org.example.service.LoginService;
 import org.example.util.ScannerUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import java.util.Scanner;
 
 @Controller
 public class LoginController {
+    @Autowired
+    private LoginService loginService;
     private String menu = """
             *** MENU ***
             1. Login
@@ -35,9 +39,6 @@ public class LoginController {
             System.out.print("Enter phone:");
             String phone = scanner.nextLine();
 
-            System.out.print("Enter pswd:");
-            String password = scanner.next();
-
-           // authSe.login(phone, password);
+            loginService.login(phone);
     }
 }

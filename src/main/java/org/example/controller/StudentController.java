@@ -3,7 +3,7 @@ package org.example.controller;
 import org.example.util.ScannerUtil;
 import org.springframework.stereotype.Controller;
 @Controller
-public class UserController {
+public class StudentController {
     public void start() {
         boolean b = true;
         while (b) {
@@ -21,7 +21,6 @@ public class UserController {
                     showMenu();
                 }
             }
-
         }
     }
     private void orderBook() {

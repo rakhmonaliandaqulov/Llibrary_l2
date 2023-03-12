@@ -32,10 +32,11 @@ public class Database {
                  "name varchar(15) not null," +
                  "surname varchar(15) not null," +
                  "phone varchar(9) not null," +
+                 "status varchar not null default 'STUDENT'," +
                  "birth_date date not null," +
                  "visible boolean default true)";
 
-         String student_book = "create table if not exists student_book (" +
+         String student_book = "create table if not exists students_book (" +
                  "id serial primary key," +
                  "created_date timestamp," +
                  "status varchar default 'TAKEN'," +
