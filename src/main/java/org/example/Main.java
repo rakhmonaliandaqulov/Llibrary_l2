@@ -10,10 +10,10 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class Main {
     public static void main(String[] args) {
-       // Database.initTable();
+        //Database.initTable();
         ApplicationContext context = new AnnotationConfigApplicationContext(Config.class);
-        InitDatabase initDatabase = (InitDatabase) context.getBean("initDatabase");
-        initDatabase.adminInit();
+        //InitDatabase initDatabase = (InitDatabase) context.getBean("initDatabase");
+        //initDatabase.adminInit();
         LoginController loginController = (LoginController) context.getBean("loginController");
         loginController.start();
 

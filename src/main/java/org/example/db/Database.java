@@ -23,8 +23,8 @@ public class Database {
                  "id serial primary key," +
                  "title varchar not null," +
                  "author varchar not null," +
-                 "publish_year date not null," +
-                 "amount numeric," +
+                 "publish_year varchar not null," +
+                 "amount numeric default 1," +
                  "visible boolean default true)";
 
          String student = "create table if not exists student (" +

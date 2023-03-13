@@ -6,13 +6,13 @@ public class Book {
     private Integer id;
     private String title;
     private String author;
-    private LocalDate publishYear;
+    private String publishYear;
     private Integer amount;
     private Boolean visible;
     public Book() {
     }
 
-    public Book(Integer id, String title, String author, LocalDate publishYear, Integer amount, Boolean visible) {
+    public Book(Integer id, String title, String author, String publishYear, Integer amount, Boolean visible) {
         this.id = id;
         this.title = title;
         this.author = author;
@@ -38,10 +38,10 @@ public class Book {
     public void setAuthor(String author) {
         this.author = author;
     }
-    public LocalDate getPublishYear() {
+    public String getPublishYear() {
         return publishYear;
     }
-    public void setPublishYear(LocalDate publishYear) {
+    public void setPublishYear(String publishYear) {
         this.publishYear = publishYear;
     }
     public Integer getAmount() {

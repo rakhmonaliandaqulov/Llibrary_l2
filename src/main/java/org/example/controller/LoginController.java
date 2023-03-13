@@ -36,7 +36,7 @@ public class LoginController {
     private void getLogin() {
             Scanner scanner = new Scanner(System.in);
 
-            System.out.print("Enter phone:");
+            System.out.print("Enter phone: ");
             String phone = scanner.nextLine();
 
             loginService.login(phone);

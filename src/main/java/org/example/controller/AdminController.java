@@ -1,10 +1,21 @@
 package org.example.controller;
 
+import org.example.dto.Student;
+import org.example.service.BookService;
+import org.example.service.StudentService;
 import org.example.util.ScannerUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+
+import java.util.Date;
+import java.util.Scanner;
 
 @Controller
 public class AdminController {
+    @Autowired
+    private BookService bookService;
+    @Autowired
+    private StudentService studentService;
     public void  start() {
         boolean b = true;
         while (b) {
@@ -28,14 +39,50 @@ public class AdminController {
     private void deleteStudent() {
     }
     private void addStudent() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter name: ");
+        String name = scanner.nextLine();
+
+        System.out.print("Enter surname: ");
+        String surname = scanner.nextLine();
+
+        System.out.print("Enter phone: ");
+        String phone = scanner.nextLine();
+
+        System.out.print("Enter birth date: ");
+        String birthDate = scanner.nextLine();
+
+        studentService.addStudent(name, surname, phone, birthDate);
     }
     private void studentList() {
     }
     private void deleteBook() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter book id: ");
+        Integer bookId = scanner.nextInt();
+
+        bookService.deleteBook(bookId);
     }
     private void addBook() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter book title: ");
+        String title = scanner.nextLine();
+
+        System.out.print("Enter book author: ");
+        String author = scanner.nextLine();
+
+        System.out.print("Enter publish year: ");
+        String publish_year = scanner.nextLine();
+
+        System.out.print("Enter amount: ");
+        Integer amount = scanner.nextInt();
+
+        bookService.addBook(title, author, publish_year, amount);
     }
     private void bookList() {
+        bookService.bookList();
     }
     public void showMenu() {
         System.out.println("*** WELCOME TO ADMIN MENU ***");
