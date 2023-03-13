@@ -14,6 +14,9 @@ public class Main {
         ApplicationContext context = new AnnotationConfigApplicationContext(Config.class);
         InitDatabase initDatabase = (InitDatabase) context.getBean("initDatabase");
         initDatabase.adminInit();
+        LoginController loginController = (LoginController) context.getBean("loginController");
+        loginController.start();
+
 
 
     }

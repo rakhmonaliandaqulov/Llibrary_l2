@@ -6,6 +6,8 @@ import org.example.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
+
 @Repository
 public class InitDatabase {
     @Autowired
@@ -16,6 +18,7 @@ public class InitDatabase {
         profile.setName("Admin");
         profile.setSurname("Adminjon");
         profile.setPhone("123");
+        profile.setBirthDate(LocalDate.parse("2000-12-12"));
         profile.setStatus(GeneralStatus.ADMIN);
 
 

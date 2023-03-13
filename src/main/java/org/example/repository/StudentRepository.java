@@ -20,10 +20,10 @@ import java.util.List;
 public class StudentRepository {
     @Autowired
     private JdbcTemplate jdbcTemplate;
-    public int save(Student student) {
+    /*public int save(Student student) {
         Connection connection = Database.getConnection();
         try {
-            String sql = "insert into student (name, surname, phone, status, birth_date, visible) " + " values ('%s','%s','%s','%s','%s')";
+            String sql = "insert into student (name, surname, phone, status, birth_date, visible) " + " values ('%s','%s','%s','%s','%s', '%s')";
             sql = String.format(sql, student.getName(), student.getSurname(), student.getPhone(), student.getStatus(), student.getBirthDate());
 
             Statement statement = connection.createStatement();
@@ -41,13 +41,14 @@ public class StudentRepository {
             }
         }
         return 0;
-    }
-   /* public void save(Student student) {
-        String sql = "insert into student (name,surname, phone, birth_date, status) values ('%s','%s','%s','%s')";
-        sql = String.format(sql, student.getName(), student.getSurname(), student.getPhone(), student.getBirthDate(), student.getStatus());
+    }*/
+    public void save(Student student) {
+        String sql = "insert into student (name,surname, phone, birth_date, status) values ('%s','%s','%s','%s','%s')";
+        sql = String.format(sql, student.getName(), student.getSurname(), student.getPhone(),
+                student.getBirthDate(), student.getStatus());
         int n = jdbcTemplate.update(sql);
         System.out.println(n);
-    }*/
+    }
    /* public Student geStudentByPhone(String phone) {
         Connection connection = null;
         try {
