@@ -32,8 +32,8 @@ public class Database {
                  "name varchar(15) not null," +
                  "surname varchar(15) not null," +
                  "phone varchar(9) not null," +
-                 "status varchar not null default 'STUDENT'," +
                  "birth_date date not null," +
+                 "status varchar not null default 'STUDENT'," +
                  "visible boolean default true)";
 
          String student_book = "create table if not exists students_book (" +

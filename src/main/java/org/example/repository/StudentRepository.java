@@ -1,6 +1,7 @@
 package org.example.repository;
 
 import org.example.db.Database;
+import org.example.dto.Book;
 import org.example.dto.Student;
 import org.example.enums.GeneralStatus;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+
 @Repository
 public class StudentRepository {
     @Autowired
@@ -88,12 +91,12 @@ public class StudentRepository {
        Student student = (Student) jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Student.class));
        return student;
    }*/
-   public Student getStudentByPhone(String phone) {
+  /* public Student getStudentByPhone(String phone) {
        Connection connection = null;
        try {
            connection = Database.getConnection();
            Statement statement = connection.createStatement();
-           String sql = String.format("Select  * from student where phone= '%s';", phone);
+           String sql = String.format("Select  * from student where phone = '%s';", phone);
            ResultSet resultSet = statement.executeQuery(sql);
 
            while (resultSet.next()) {
@@ -119,16 +122,25 @@ public class StudentRepository {
            }
        }
        return null;
-   }
-   /*public Student getStudentByPhone(String phone) {
-       String sql = "SELECT * FROM student Where phone =" + phone;
+   }*/
+   public Student getStudentByPhone(String phone) {
+       String sql = String.format("Select  * from student where phone = '%s';", phone);
+
        List<Student> list = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Student.class));
        if (list.size() > 0) {
            return list.get(0);
        }
        return null;
-   }*/
-    public List<Student> getStudentList() {
+   }
+    public Student getStudentById(Integer id) {
+        String sql = "SELECT * FROM student Where id =" + id;
+        List<Student> list = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Student.class));
+        if (list.size() > 0) {
+            return list.get(0);
+        }
+        return null;
+    }
+   /* public List<Student> getStudentList() {
         try (Connection connection = Database.getConnection()) {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("select * from student");
@@ -149,5 +161,23 @@ public class StudentRepository {
             System.exit(-1);
         }
         return null;
+    }*/
+    public List<Student> studentList() {
+       String sql = "select * from student";
+       List<Student> list = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Student.class));
+       return list;
+    }
+
+    public int deleteStudent(Integer id) {
+        try (Connection connection = Database.getConnection()) {
+            String sql = String.format("delete from student where id = '%s'", id);
+
+            Statement statement = connection.createStatement();
+            return statement.executeUpdate(sql);
+
+        } catch (SQLException sqlException) {
+            sqlException.printStackTrace();
+        }
+        return 0;
     }
 }

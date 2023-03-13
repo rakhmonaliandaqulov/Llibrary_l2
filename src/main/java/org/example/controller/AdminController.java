@@ -37,6 +37,10 @@ public class AdminController {
     private void studentTakenBook() {
     }
     private void deleteStudent() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter id: ");
+        Integer id = scanner.nextInt();
+        studentService.deleteStudent(id);
     }
     private void addStudent() {
         Scanner scanner = new Scanner(System.in);
@@ -56,6 +60,7 @@ public class AdminController {
         studentService.addStudent(name, surname, phone, birthDate);
     }
     private void studentList() {
+        studentService.studentList();
     }
     private void deleteBook() {
         Scanner scanner = new Scanner(System.in);

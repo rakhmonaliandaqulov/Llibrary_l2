@@ -28,6 +28,9 @@ public class BookService {
 
     public void bookList() {
         List<Book> bookList = bookRepository.bookList();
+        if (bookList == null) {
+            System.out.println("No book yet.");
+        }
         for (Book book : bookList) {
             System.out.println(book);
         }

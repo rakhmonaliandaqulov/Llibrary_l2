@@ -85,7 +85,7 @@ public class BookRepository {
         return result;
     }*/
     public Book getBookById(Integer id) {
-        String sql = "SELECT * FROM lesson Where id =" + id;
+        String sql = "SELECT * FROM book Where id =" + id;
         List<Book> list = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Book.class));
         if (list.size() > 0) {
             return list.get(0);
