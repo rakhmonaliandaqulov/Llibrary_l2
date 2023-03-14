@@ -1,8 +1,10 @@
 package org.example.controller;
 
 import org.example.dto.Student;
+import org.example.dto.StudentsBook;
 import org.example.service.BookService;
 import org.example.service.StudentService;
+import org.example.service.StudentsBookService;
 import org.example.util.ScannerUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +18,8 @@ public class AdminController {
     private BookService bookService;
     @Autowired
     private StudentService studentService;
+    @Autowired
+    private StudentsBookService studentsBookService;
     public void  start() {
         boolean b = true;
         while (b) {
@@ -38,8 +42,10 @@ public class AdminController {
         }
     }
     private void bookTakenHistory() {
+        studentsBookService.adminBookAllHistory();
     }
     private void studentTakenBook() {
+        studentsBookService.adminTakenBookStudentList();
     }
     private void deleteStudent() {
         Scanner scanner = new Scanner(System.in);

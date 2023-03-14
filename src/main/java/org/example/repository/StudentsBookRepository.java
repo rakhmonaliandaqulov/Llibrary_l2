@@ -33,4 +33,46 @@ public class StudentsBookRepository {
         }
         return null;
     }
+
+    public List<StudentsBook> userTakenList() {
+        String sql = "select sb.id, b.title, b.author, sb.created_date from book as b " +
+                "inner join students_book as sb on sb.book_id = b.id " +
+                "inner join student as s on s.id = sb.student_id " +
+                "where sb.status = 'TAKEN'";
+        List<StudentsBook> list = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(StudentsBook.class));
+        return list;
+    }
+
+    public List<StudentsBook> userReturnedList() {
+        String sql = "select sb.id, b.title, b.author, sb.created_date from book as b " +
+                "inner join students_book as sb on sb.book_id = b.id " +
+                "inner join student as s on s.id = sb.student_id " +
+                "where sb.status = 'RETURNED'";
+        List<StudentsBook> list = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(StudentsBook.class));
+        return list;
+    }
+
+    public List<StudentsBook> userHistoryLibrary() {
+        String sql = "select sb.id, b.title, b.author, sb.created_date from book as b " +
+                "inner join students_book as sb on sb.book_id = b.id " +
+                "inner join student as s on s.id = sb.student_id ";
+        List<StudentsBook> list = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(StudentsBook.class));
+        return list;
+    }
+
+    public List<StudentsBook> adminTakenBookStudentList() {
+        String sql = "select sb.id, s.name, s.surname, s.phone, b.title, sb.created_date from book as b " +
+                "inner join students_book as sb on sb.book_id = b.id " +
+                "inner join student as s on s.id = sb.student_id " +
+                "where sb.status = 'TAKEN'";
+        List<StudentsBook> list = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(StudentsBook.class));
+        return list;
+    }
+    public List<StudentsBook> adminBookAllHistory() {
+        String sql = "select sb.id, s.name, s.surname, s.phone, b.title, sb.created_date from book as b " +
+                "inner join students_book as sb on sb.book_id = b.id " +
+                "inner join student as s on s.id = sb.student_id ";
+        List<StudentsBook> list = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(StudentsBook.class));
+        return list;
+    }
 }

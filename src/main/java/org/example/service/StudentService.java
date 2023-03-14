@@ -1,8 +1,10 @@
 package org.example.service;
 
 import org.example.dto.Student;
+import org.example.dto.StudentsBook;
 import org.example.enums.GeneralStatus;
 import org.example.repository.StudentRepository;
+import org.example.repository.StudentsBookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +16,8 @@ import java.util.List;
 public class StudentService {
     @Autowired
     private StudentRepository studentRepository;
+    @Autowired
+    private StudentsBookRepository studentsBookRepository;
     public void addStudent(String name, String surname, String phone, String birthDate) {
         Student exists = studentRepository.getStudentByPhone(phone);
         if (exists != null) {
@@ -57,4 +61,5 @@ public class StudentService {
             System.out.println("\n Deleted student");
         }
     }
+
 }

@@ -37,11 +37,13 @@ public class StudentController {
     private void orderBook() {
     }
     private void historyLibrary() {
+        studentsBookService.userHistoryLibrary();
     }
     private void returnBook() {
+        studentsBookService.userReturnedBook();
     }
     private void takenBook() {
-
+      studentsBookService.userTakenBook();
     }
     private void takeBook() {
         Student student = new Student();
