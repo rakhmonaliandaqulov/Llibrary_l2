@@ -21,14 +21,19 @@ public class AdminController {
         while (b) {
             showMenu();
             switch (ScannerUtil.getAction()) {
-            case 1 -> bookList();
-            case 2 -> addBook();
+            case 1 -> addBook();
+            case 2 -> bookList();
             case 3 -> deleteBook();
-            case 4 -> studentList();
-            case 5 -> addStudent();
+            case 4 -> addStudent();
+            case 5 -> studentList();
             case 6 -> deleteStudent();
             case 7 -> studentTakenBook();
             case 8 -> bookTakenHistory();
+            case 0-> b = false;
+                default -> {
+                    System.out.println("\n Are you mazgi? Write correctly");
+                    showMenu();
+                }
             }
         }
     }
@@ -91,13 +96,16 @@ public class AdminController {
     }
     public void showMenu() {
         System.out.println("*** WELCOME TO ADMIN MENU ***");
-        System.out.println("1. Book list");
-        System.out.println("2. Add book");
+        System.out.println("1. Add book");
+        System.out.println("2. Book list");
         System.out.println("3. Delete book");
-        System.out.println("4. Student List");
-        System.out.println("5. Add student");
+        System.out.println("----------------");
+        System.out.println("4. Add student");
+        System.out.println("5. Student List");
         System.out.println("6. Delete student");
+        System.out.println("----------------");
         System.out.println("7. Student taken book");
         System.out.println("8. Book taken history");
+        System.out.println("0. Log out");
     }
 }

@@ -1,9 +1,13 @@
 package org.example.controller;
 
+import org.example.service.BookService;
 import org.example.util.ScannerUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 @Controller
 public class StudentController {
+    @Autowired
+    private BookService bookService;
     public void start() {
         boolean b = true;
         while (b) {
@@ -34,6 +38,7 @@ public class StudentController {
     private void takeBook() {
     }
     private void bookList() {
+        bookService.bookList();
     }
     public void showMenu() {
         System.out.println("<<<WELCOME TO USER MENU!>>>");
@@ -41,9 +46,11 @@ public class StudentController {
         System.out.println("1. Book list (Kitoblar)");
         System.out.println("2. Take book (Kitob olish)");
         System.out.println("3. Taken book (Olib qaytarilmagan kitoblar)");
+        System.out.println("-------------------------------------------------");
         System.out.println("4. Return book (Qaytarilgan kitoblar)");
         System.out.println("5. History library (Kutubxona tarixi)");
         System.out.println("6. Oder book (Kutubxonchi yoq kitobni olib kel deb buyurishi)");
+        System.out.println("--------------------------------------------------");
         System.out.println("0. Log Out");
     }
 }

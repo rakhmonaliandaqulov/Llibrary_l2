@@ -92,7 +92,7 @@ public class BookRepository {
         }
         return null;
     }
-    public int deleteBook(Integer id) {
+    /*public int deleteBook(Integer id) {
         try (Connection connection = Database.getConnection()) {
             String sql = String.format("delete from book where id = '%s'", id);
 
@@ -103,10 +103,10 @@ public class BookRepository {
             sqlException.printStackTrace();
         }
         return 0;
-    }
-    /*public int deleteBook(Integer id) {
-        String sql = "delete FROM book Where id =" + id;
-        List<Book> n = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Book.class));
-
     }*/
+    public int deleteBook(Integer id) {
+        String sql = "delete FROM book Where id =" + id;
+        int n = jdbcTemplate.update(sql);
+        return n;
+    }
 }

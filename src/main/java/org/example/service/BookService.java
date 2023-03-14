@@ -29,7 +29,7 @@ public class BookService {
     public void bookList() {
         List<Book> bookList = bookRepository.bookList();
         if (bookList == null) {
-            System.out.println("No book yet.");
+            System.out.println("\n No book yet.");
         }
         for (Book book : bookList) {
             System.out.println(book);
@@ -39,12 +39,12 @@ public class BookService {
     public void deleteBook(int bookId) {
         Book book = bookRepository.getBookById(bookId);
         if (book == null) {
-            System.out.println("Not found book.");
+            System.out.println("\n Not found book.");
             return;
         }
         int n = bookRepository.deleteBook(bookId);
         if (n != 0) {
-            System.out.println("Deleted book");
+            System.out.println("\n Deleted book");
         }
 
     }
