@@ -21,7 +21,7 @@ public class Book {
     public void setId(Integer id) {
         this.id = id;
     }
-    public Integer getId(Integer id) {
+    public Integer getId() {
         return this.id;
     }
     public String getTitle() {

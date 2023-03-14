@@ -24,7 +24,7 @@ public class LoginService {
          return;
      }
      if (student.getStatus().equals(GeneralStatus.STUDENT)) {
-         studentController.start();
+         studentController.start(student);
      } else if (student.getStatus().equals(GeneralStatus.ADMIN)) {
          adminController.start();
      }else {

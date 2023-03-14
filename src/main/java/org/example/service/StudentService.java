@@ -6,6 +6,7 @@ import org.example.enums.GeneralStatus;
 import org.example.repository.StudentRepository;
 import org.example.repository.StudentsBookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -61,5 +62,4 @@ public class StudentService {
             System.out.println("\n Deleted student");
         }
     }
-
 }

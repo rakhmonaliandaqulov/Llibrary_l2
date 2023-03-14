@@ -70,16 +70,16 @@ public class StudentsBook {
         return bookId;
     }
 
-    public void setBookId(Integer id) {
-        this.bookId = bookId;
+    public void setBookId(Book id) {
+        this.bookId = id;
     }
 
     public Student getStudentId() {
         return studentId;
     }
 
-    public void setStudentId(Integer id) {
-        this.studentId = studentId;
+    public void setStudentId(Student id) {
+        this.studentId = id;
     }
 
     @Override

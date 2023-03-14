@@ -106,7 +106,7 @@ public class BookRepository {
 
     public void updateBook(Integer id, Book book) {
         String sql = "update book set id = %d, title = '%s', author = '%s', publish_year = '%s', amount = '%s', visible = %s where id =" + id;
-        sql = String.format(sql, book.getId(id), book.getTitle(), book.getAuthor(), book.getPublishYear(),
+        sql = String.format(sql, book.getId(), book.getTitle(), book.getAuthor(), book.getPublishYear(),
                 book.getAmount(), book.getVisible(), id);
         jdbcTemplate.update(sql);
     }

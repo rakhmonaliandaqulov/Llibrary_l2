@@ -5,7 +5,6 @@ import org.example.dto.Student;
 import org.example.dto.StudentsBook;
 import org.example.enums.BookStatus;
 import org.example.repository.BookRepository;
-import org.example.repository.StudentRepository;
 import org.example.repository.StudentsBookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,9 +20,8 @@ public class StudentsBookService {
     @Autowired
     private BookRepository bookRepository;
     public void takeBook(Integer id, Integer duration, Student student) {
-        int count = studentsBookRepository.getOrderInfoListByStudentId(student.getId()).size();
+        int count = studentsBookRepository.getStudentsBookById(id).size();
         Book book = bookRepository.getBookById(id);
-        System.out.println(book);
         if (book == null){
             System.out.println("\n Book not found \n Please, try again to another book");
             return;
@@ -37,12 +35,12 @@ public class StudentsBookService {
         LocalDateTime localDateTime = LocalDateTime.now();
         studentBook.setReturnedDate(localDateTime);
         studentBook.setDuration(duration);
-        studentBook.setBookId(book.getId(id));
-        studentBook.setStudentId(student.getId());
+        studentBook.setBookId(book);
+        studentBook.setStudentId(student);
 
         studentsBookRepository.save(studentBook);
         book.setAmount(book.getAmount() - 1);
-        bookRepository.updateBook(book.getId(id),book);
+        bookRepository.updateBook(book.getId(),book);
 
         System.out.println("You taken book.");
     }
@@ -57,8 +55,8 @@ public class StudentsBookService {
         }
         }
 
-    public void userReturnedBook() {
-        List<StudentsBook> studentsBookList = studentsBookRepository.userReturnedList();
+    public void userReturnedBookList() {
+        List<StudentsBook> studentsBookList = studentsBookRepository.userReturnedBookList();
         if (studentsBookList == null) {
             System.out.println("No books yet");
         }
@@ -95,4 +93,8 @@ public class StudentsBookService {
             System.out.println(studentsBook);
         }
     }
+
+//    public void returnBook(Integer bookId) {
+//        StudentsBook studentsBook = studentsBookRepository.getStudentsBookById(bookId);
+//    }
 }
