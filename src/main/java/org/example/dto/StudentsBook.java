@@ -1,24 +1,28 @@
 package org.example.dto;
 
-import org.example.enums.GeneralStatus;
-
+import org.example.enums.BookStatus;
 import java.time.LocalDateTime;
 
 public class StudentsBook {
     private Integer id;
     private LocalDateTime createdDate;
-    private GeneralStatus status;
+    private BookStatus status;
     private LocalDateTime returnedDate;
     private Integer duration;
+    private Book bookId;
+    private Student studentId;
     public StudentsBook() {
     }
 
-    public StudentsBook(Integer id, LocalDateTime createdDate, GeneralStatus status, LocalDateTime returnedDate, Integer duration) {
+    public StudentsBook(Integer id, LocalDateTime createdDate, BookStatus status, LocalDateTime returnedDate,
+                        Integer duration, Book bookId, Student studentId) {
         this.id = id;
         this.createdDate = createdDate;
         this.status = status;
         this.returnedDate = returnedDate;
         this.duration = duration;
+        this.bookId = bookId;
+        this.studentId = studentId;
     }
 
     public Integer getId() {
@@ -37,11 +41,11 @@ public class StudentsBook {
         this.createdDate = createdDate;
     }
 
-    public GeneralStatus getStatus() {
+    public BookStatus getStatus() {
         return status;
     }
 
-    public void setStatus(GeneralStatus status) {
+    public void setStatus(BookStatus status) {
         this.status = status;
     }
 
@@ -59,6 +63,23 @@ public class StudentsBook {
 
     public void setDuration(Integer duration) {
         this.duration = duration;
+    }
+
+
+    public Book getBookId() {
+        return bookId;
+    }
+
+    public void setBookId(Integer id) {
+        this.bookId = bookId;
+    }
+
+    public Student getStudentId() {
+        return studentId;
+    }
+
+    public void setStudentId(Integer id) {
+        this.studentId = studentId;
     }
 
     @Override

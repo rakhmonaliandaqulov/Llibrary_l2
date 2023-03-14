@@ -1,17 +1,11 @@
 package org.example.repository;
 
-import org.example.db.Database;
 import org.example.dto.Book;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.LinkedList;
 import java.util.List;
 
 @Repository
@@ -108,5 +102,12 @@ public class BookRepository {
         String sql = "delete FROM book Where id =" + id;
         int n = jdbcTemplate.update(sql);
         return n;
+    }
+
+    public void updateBook(Integer id, Book book) {
+        String sql = "update book set id = %d, title = '%s', author = '%s', publish_year = '%s', amount = '%s', visible = %s where id =" + id;
+        sql = String.format(sql, book.getId(id), book.getTitle(), book.getAuthor(), book.getPublishYear(),
+                book.getAmount(), book.getVisible(), id);
+        jdbcTemplate.update(sql);
     }
 }

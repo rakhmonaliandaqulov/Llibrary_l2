@@ -41,7 +41,7 @@ public class Database {
                  "created_date timestamp," +
                  "status varchar default 'TAKEN'," +
                  "returned_date timestamp," +
-                 "duration date," +
+                 "duration integer," +
                  "student_id integer," +
                  "book_id integer," +
                  "foreign key (student_id) references student(id)," +

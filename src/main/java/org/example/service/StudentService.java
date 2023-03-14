@@ -17,7 +17,7 @@ public class StudentService {
     public void addStudent(String name, String surname, String phone, String birthDate) {
         Student exists = studentRepository.getStudentByPhone(phone);
         if (exists != null) {
-            System.out.println("Student phone exists.");
+            System.out.println("\n Student phone exists.");
         }
 
         Student student = new Student();
@@ -30,17 +30,17 @@ public class StudentService {
         int n = studentRepository.save(student);
 
         if (n != 0) {
-            System.out.println("Student added successfully");
+            System.out.println("\n Student added successfully");
             return;
         } else {
-            System.out.println("ERROR");
+            System.out.println("\n ERROR");
         }
     }
 
     public void studentList() {
         List<Student> studentList = studentRepository.studentList();
         if (studentList == null) {
-            System.out.println("No student yet");
+            System.out.println("\n No student yet");
         }
         for (Student student : studentList) {
             System.out.println(student);
@@ -50,11 +50,11 @@ public class StudentService {
     public void deleteStudent(Integer id) {
         Student exists = studentRepository.getStudentById(id);
         if (exists == null) {
-            System.out.println("Not found student.");
+            System.out.println("\n Not found student.");
         }
         int n = studentRepository.deleteStudent(id);
         if (n != 0) {
-            System.out.println("Deleted student");
+            System.out.println("\n Deleted student");
         }
     }
 }

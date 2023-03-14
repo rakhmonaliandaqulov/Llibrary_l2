@@ -1,7 +1,5 @@
 package org.example.dto;
 
-import java.time.LocalDate;
-
 public class Book {
     private Integer id;
     private String title;
@@ -20,11 +18,11 @@ public class Book {
         this.amount = amount;
         this.visible = visible;
     }
-    public Integer getId() {
-        return id;
-    }
     public void setId(Integer id) {
         this.id = id;
+    }
+    public Integer getId(Integer id) {
+        return this.id;
     }
     public String getTitle() {
         return title;
