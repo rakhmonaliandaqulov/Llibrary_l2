@@ -1,9 +1,6 @@
 package org.example.repository;
 
-import org.example.dto.StudentAllHistory;
-import org.example.dto.StudentTakenBookInfo;
-import org.example.dto.StudentsBook;
-import org.example.dto.StudentsBookInfo;
+import org.example.dto.*;
 import org.example.enums.BookStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -57,11 +54,24 @@ public class StudentsBookRepository {
         List<StudentsBook> list = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(StudentsBook.class));
         return list;
     }
-    public List<StudentsBook> userHistoryLibrary() {
-        String sql = "select sb.id, b.title, b.author, sb.created_date from book as b " +
+    public List<StudentBookHistory> userHistoryLibrary() {
+        String sql = "select sb.id, b.title as b_title, b.author as b_author, sb.status, sb.created_date as taken_date, " +
+                " sb.returned_date from book as b " +
                 "inner join students_book as sb on sb.book_id = b.id " +
                 "inner join student as s on s.id = sb.student_id ";
-        List<StudentsBook> list = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(StudentsBook.class));
+        List<StudentBookHistory> list = jdbcTemplate.query(sql, new RowMapper<StudentBookHistory>() {
+            @Override
+            public StudentBookHistory mapRow(ResultSet rs, int rowNum) throws SQLException {
+                StudentBookHistory studentBookHistory = new StudentBookHistory();
+                studentBookHistory.setId(rs.getInt("id"));
+                studentBookHistory.setBookTitle(rs.getString("b_title"));
+                studentBookHistory.setBookAuthor(rs.getString("b_author"));
+                studentBookHistory.setStatus(BookStatus.valueOf(rs.getString("status")));
+                studentBookHistory.setCreatedDate(rs.getTimestamp("taken_date").toLocalDateTime());
+                studentBookHistory.setRetunedDate(rs.getTimestamp("returned_date").toLocalDateTime());
+                return studentBookHistory;
+            }
+        });
         return list;
     }
     public List<StudentTakenBookInfo> adminTakenBookStudentList() {
@@ -107,5 +117,11 @@ public class StudentsBookRepository {
             }
         });
         return list;
+    }
+
+    public void returnBook(Integer bookId) {
+        String sql = "update students_book set status = 'RETURNED' where id =" + bookId;
+        jdbcTemplate.update(sql);
+
     }
 }

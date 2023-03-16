@@ -64,12 +64,12 @@ public class StudentsBookService {
     }
 
     public void userHistoryLibrary() {
-        List<StudentsBook> studentsBookList = studentsBookRepository.userHistoryLibrary();
-        if (studentsBookList == null) {
+        List<StudentBookHistory> studentBookHistoryList = studentsBookRepository.userHistoryLibrary();
+        if (studentBookHistoryList == null) {
             System.out.println("No history yet");
         }
-        for (StudentsBook studentsBook : studentsBookList) {
-            System.out.println(studentsBook);
+        for (StudentBookHistory studentBookHistory : studentBookHistoryList) {
+            System.out.println(studentBookHistory);
         }
     }
 
@@ -92,7 +92,11 @@ public class StudentsBookService {
         }
     }
 
-//    public void returnBook(Integer bookId) {
-//        StudentsBook studentsBook = studentsBookRepository.getStudentsBookById(bookId);
-//    }
+    public void returnBook(Integer bookId) {
+        Book book = bookRepository.getBookById(bookId);
+        if (book == null) {
+            System.out.println("Not fount book.");
+        }
+        studentsBookRepository.returnBook(bookId);
+    }
 }

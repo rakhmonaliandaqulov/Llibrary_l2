@@ -45,7 +45,7 @@ public class StudentController {
         System.out.print("Enter book id: ");
         Integer bookId = scanner.nextInt();
 
-        //studentsBookService.returnBook(bookId);
+        studentsBookService.returnBook(bookId);
     }
     private void orderBook() {
     }
