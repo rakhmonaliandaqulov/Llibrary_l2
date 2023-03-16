@@ -36,7 +36,7 @@ public class StudentBookHistory extends StudentsBookInfo{
     public String toString() {
         return "StudentBookHistory{" +
                 "status=" + status +
-                ", retunedDate=" + retunedDate +
+                ", retunedDate=" + retunedDate + super.toString()+
                 '}';
     }
 }
