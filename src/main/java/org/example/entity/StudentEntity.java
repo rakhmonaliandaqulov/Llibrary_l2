@@ -14,7 +14,7 @@ public class StudentEntity {
     private String name;
     private String surname;
     private String phone;
-    private GeneralStatus status;
+    private String  status;
     private LocalDate birthDate;
 
     public Integer getId() {
@@ -49,11 +49,11 @@ public class StudentEntity {
         this.phone = phone;
     }
 
-    public GeneralStatus getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(GeneralStatus status) {
+    public void setStatus(String  status) {
         this.status = status;
     }
 

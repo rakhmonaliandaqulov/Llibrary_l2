@@ -12,6 +12,8 @@
 
         <!-- MAPPINGS -->
         <mapping class="org.example.entity.BookEntity" />
+        <mapping class="org.example.entity.StudentEntity" />
+        <mapping class="org.example.entity.StudentsBookEntity" />
     </session-factory>
 
 </hibernate-configuration>

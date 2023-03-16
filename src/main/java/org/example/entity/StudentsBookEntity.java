@@ -14,7 +14,7 @@ public class StudentsBookEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private LocalDateTime createdDate;
-    private BookStatus status;
+    private String status;
     private LocalDateTime returnedDate;
     private Integer duration;
     private Integer bookId;
@@ -36,11 +36,11 @@ public class StudentsBookEntity {
         this.createdDate = createdDate;
     }
 
-    public BookStatus getStatus() {
+    public String  getStatus() {
         return status;
     }
 
-    public void setStatus(BookStatus status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
