@@ -1,5 +1,7 @@
 package org.example.repository;
 
+import org.example.dto.StudentAllHistory;
+import org.example.dto.StudentTakenBookInfo;
 import org.example.dto.StudentsBook;
 import org.example.dto.StudentsBookInfo;
 import org.example.enums.BookStatus;
@@ -41,7 +43,7 @@ public class StudentsBookRepository {
                 sb.setId(rs.getInt("id"));
                 sb.setBookTitle(rs.getString("book_title"));
                 sb.setBookAuthor(rs.getString("book_author"));
-                sb.setCreatedDate(rs.getTimestamp("taken_date").toLocalDateTime());
+                sb.setCreatedDate(rs.getTimestamp("created_date").toLocalDateTime());
                 return sb;
             }
         });
@@ -62,19 +64,48 @@ public class StudentsBookRepository {
         List<StudentsBook> list = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(StudentsBook.class));
         return list;
     }
-    public List<StudentsBook> adminTakenBookStudentList() {
-        String sql = "select sb.id, s.name, s.surname, s.phone, b.title, sb.created_date from book as b " +
+    public List<StudentTakenBookInfo> adminTakenBookStudentList() {
+        String sql = "select sb.id, s.name as s_name, s.surname as s_surname, s.phone as s_phone, b.title as b_title, sb.created_date as taken_date from book as b " +
                 "inner join students_book as sb on sb.book_id = b.id " +
                 "inner join student as s on s.id = sb.student_id " +
                 "where sb.status = 'TAKEN'";
-        List<StudentsBook> list = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(StudentsBook.class));
+        List<StudentTakenBookInfo> list = jdbcTemplate.query(sql, new RowMapper<StudentTakenBookInfo>() {
+            @Override
+            public StudentTakenBookInfo mapRow(ResultSet rs, int rowNum) throws SQLException {
+                StudentTakenBookInfo studentInfo = new StudentTakenBookInfo();
+                studentInfo.setId(rs.getInt("id"));
+                studentInfo.setStudentName(rs.getString("s_name"));
+                studentInfo.setStudentSurname(rs.getString("s_surname"));
+                studentInfo.setStudentPhone(rs.getString("s_phone"));
+                studentInfo.setBookTitle(rs.getString("b_title"));
+                studentInfo.setTakenDate(rs.getTimestamp("taken_date").toLocalDateTime());
+                return studentInfo;
+            }
+        });
         return list;
     }
-    public List<StudentsBook> adminBookAllHistory() {
-        String sql = "select sb.id, s.name, s.surname, s.phone, b.title, sb.created_date from book as b " +
+    public List<StudentAllHistory> adminStudentAllHistory() {
+        String sql = "select sb.id, s.name as s_name, s.surname as s_surname, s.phone as s_phone, b.title as b_title, " +
+                " b.author as b_author, sb.status, sb.created_date as taken_date, sb.returned_date from book as b " +
                 "inner join students_book as sb on sb.book_id = b.id " +
-                "inner join student as s on s.id = sb.student_id ";
-        List<StudentsBook> list = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(StudentsBook.class));
+                "inner join student as s on s.id = sb.student_id " +
+                "where sb.status = 'TAKEN'";
+        List<StudentAllHistory> list = jdbcTemplate.query(sql, new RowMapper<StudentAllHistory>() {
+            @Override
+            public StudentAllHistory mapRow(ResultSet rs, int rowNum) throws SQLException {
+                StudentAllHistory studentAllHistory = new StudentAllHistory();
+                studentAllHistory.setId(rs.getInt("id"));
+                studentAllHistory.setStudentName(rs.getString("s_name"));
+                studentAllHistory.setStudentSurname(rs.getString("s_surname"));
+                studentAllHistory.setStudentPhone(rs.getString("s_phone"));
+                studentAllHistory.setBookTitle(rs.getString("b_title"));
+                studentAllHistory.setBookAuthor(rs.getString("b_author"));
+                studentAllHistory.setStatus(BookStatus.valueOf(rs.getString("status")));
+                studentAllHistory.setTakenDate(rs.getTimestamp("taken_date").toLocalDateTime());
+                studentAllHistory.setReturnedDate(rs.getTimestamp("returned_date").toLocalDateTime());
+                return studentAllHistory;
+            }
+        });
         return list;
     }
 }

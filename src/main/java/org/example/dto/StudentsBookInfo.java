@@ -5,14 +5,14 @@ import java.time.LocalDateTime;
 public class StudentsBookInfo {
     private Integer id;
     private String bookTitle;
-    private String BookAuthor;
+    private String bookAuthor;
     private LocalDateTime createdDate;
     public StudentsBookInfo() {
     }
     public StudentsBookInfo(Integer id, String bookTitle, String bookAuthor, LocalDateTime createdDate) {
         this.id = id;
         this.bookTitle = bookTitle;
-        BookAuthor = bookAuthor;
+        this.bookAuthor = bookAuthor;
         this.createdDate = createdDate;
     }
 
@@ -33,11 +33,11 @@ public class StudentsBookInfo {
     }
 
     public String getBookAuthor() {
-        return BookAuthor;
+        return bookAuthor;
     }
 
     public void setBookAuthor(String bookAuthor) {
-        BookAuthor = bookAuthor;
+        this.bookAuthor = bookAuthor;
     }
 
     public LocalDateTime getCreatedDate() {
@@ -53,7 +53,7 @@ public class StudentsBookInfo {
         return "StudentsBookInfo{" +
                 "orderNumber=" + id +
                 ", bookTitle='" + bookTitle + '\'' +
-                ", BookAuthor='" + BookAuthor + '\'' +
+                ", BookAuthor='" + bookAuthor + '\'' +
                 ", createdDate=" + createdDate +
                 '}';
     }

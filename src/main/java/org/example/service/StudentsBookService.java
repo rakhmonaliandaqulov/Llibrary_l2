@@ -1,9 +1,6 @@
 package org.example.service;
 
-import org.example.dto.Book;
-import org.example.dto.Student;
-import org.example.dto.StudentsBook;
-import org.example.dto.StudentsBookInfo;
+import org.example.dto.*;
 import org.example.enums.BookStatus;
 import org.example.repository.BookRepository;
 import org.example.repository.StudentsBookRepository;
@@ -77,21 +74,21 @@ public class StudentsBookService {
     }
 
     public void adminTakenBookStudentList() {
-        List<StudentsBook> studentsBookList = studentsBookRepository.adminTakenBookStudentList();
-        if (studentsBookList == null) {
+        List<StudentTakenBookInfo> studentInfoList = studentsBookRepository.adminTakenBookStudentList();
+        if (studentInfoList == null) {
             System.out.println("No taken book student list yet.");
         }
-        for (StudentsBook studentsBook : studentsBookList) {
-            System.out.println(studentsBook);
+        for (StudentTakenBookInfo studentInfo : studentInfoList) {
+            System.out.println(studentInfo);
         }
     }
     public void adminBookAllHistory() {
-        List<StudentsBook> studentsBookList = studentsBookRepository.adminBookAllHistory();
-        if (studentsBookList == null) {
+        List<StudentAllHistory> studentAllHistoryListt = studentsBookRepository.adminStudentAllHistory();
+        if (studentAllHistoryListt == null) {
             System.out.println("No book all history yet");
         }
-        for (StudentsBook studentsBook : studentsBookList) {
-            System.out.println(studentsBook);
+        for (StudentAllHistory studentAllHistory : studentAllHistoryListt) {
+            System.out.println(studentAllHistory);
         }
     }
 
