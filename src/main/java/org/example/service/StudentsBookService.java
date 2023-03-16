@@ -3,6 +3,7 @@ package org.example.service;
 import org.example.dto.Book;
 import org.example.dto.Student;
 import org.example.dto.StudentsBook;
+import org.example.dto.StudentsBookInfo;
 import org.example.enums.BookStatus;
 import org.example.repository.BookRepository;
 import org.example.repository.StudentsBookRepository;
@@ -46,12 +47,12 @@ public class StudentsBookService {
     }
 
     public void userTakenBook() {
-        List<StudentsBook> studentsBookList = studentsBookRepository.userTakenList();
-        if (studentsBookList == null) {
+        List<StudentsBookInfo> studentsBookInfoListList = studentsBookRepository.userTakenList();
+        if (studentsBookInfoListList == null) {
             System.out.println("No books yet.");
         }
-        for (StudentsBook studentsBook : studentsBookList) {
-            System.out.println(studentsBook);
+        for (StudentsBookInfo studentsBookInfo : studentsBookInfoListList) {
+            System.out.println(studentsBookInfo);
         }
         }
 
